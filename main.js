@@ -4,3 +4,38 @@ import './style.css'
 window.Alpine = Alpine
 Alpine.start()
 
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: process.env['firebase_api_key'],
+  authDomain: "todoapp-bd9e5.firebaseapp.com",
+  projectId: "todoapp-bd9e5",
+  storageBucket: "todoapp-bd9e5.appspot.com",
+  messagingSenderId: "1093733288042",
+  appId: "1:1093733288042:web:824c84ce7d84704bfde213",
+  measurementId: "G-H9HDS693D0"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
+
+if(navigator.onLine){
+window.addEventListener('online', function(e) {
+  document.querySelector('#netWarning').style.display = 'none'
+  console.log('online'); 
+  });
+}else{
+  window.addEventListener('offline', function(e) {
+  document.querySelector('#netWarning').style.display = ''
+  console.log('offline');  
+  });
+}
